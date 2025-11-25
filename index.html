@@ -48,6 +48,17 @@
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
         .delay-600 { animation-delay: 0.6s; }
+        /* Hero background: faint image merged with the indigo color */
+        .hero-bg {
+            /* Fallback color will still apply via Tailwind's bg-indigo-900 */
+            background-image: linear-gradient(rgba(79,70,229,0.55), rgba(79,70,229,0.55)), url('images/03.png');
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: top center;
+            /* Make the hero taller */
+            min-height: 60vh;
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -62,19 +73,21 @@
                     <a href="#skills" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Skills</a>
                     <a href="#experience" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Experience</a>
                     <a href="#projects" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Projects</a>
+                    <a href="#gallery" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Gallery</a>
                     <a href="#contact" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a>
+                    
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Header / Hero Section -->
-    <header class="bg-indigo-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 shadow-xl">
+    <header class="hero-bg bg-indigo-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 shadow-xl">
         <div class="max-w-4xl mx-auto text-center">
             <!-- Profile Image Placeholder (Advanced) -->
             <div class="animate-fade-in-up delay-100 mx-auto w-36 h-36 bg-gray-700 rounded-full flex items-center justify-center mb-6 border-4 border-indigo-500 overflow-hidden shadow-2xl">
                 <!-- Placeholder Image URL for a professional look -->
-                <img src="https://drive.google.com/file/d/16w7PMByX31Q3uC6XwwyHE8sQplEIq6zY/view?usp=drive_link" alt="Ahmed Salim Profile" class="w-full h-full object-cover">
+                <img src="images/01.png" alt="Ahmed Salim Profile" class="w-full h-full object-cover">
             </div>
             
             <h1 class="animate-fade-in-up delay-200 text-4xl sm:text-6xl font-extrabold mb-3 leading-tight">Ahmed Salim Aminu</h1>
@@ -198,7 +211,7 @@
                 <!-- Project 1: Martha Inspires Foundation -->
                 <a href="https://www.marthainspires.org" target="_blank" rel="noopener noreferrer" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-400">
                     <!-- Adjusted placeholder colors for dark theme -->
-                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=MarthaInspires.org" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <img src="images/OIP.png.jfif" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
                     <div class="p-6">
                         <h4 class="text-xl font-semibold text-white mb-1">Martha Inspires Foundation</h4>
                         <p class="text-sm text-indigo-400">www.marthainspires.org</p>
@@ -209,7 +222,7 @@
                 <!-- Project 2: Might Ghana Ltd. -->
                 <a href="https://www.mightghanaltd.com" target="_blank" rel="noopener noreferrer" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-500">
                     <!-- Adjusted placeholder colors for dark theme -->
-                    <img src="https://drive.google.com/file/d/1labcPxBcwOSVSyW-qNk7u8pKUaw4_Y8V/view?usp=drive_link" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <img src="images/mightGh Logo.png" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
                     <div class="p-6">
                         <h4 class="text-xl font-semibold text-white mb-1">Might Ghana Ltd.</h4>
                         <p class="text-sm text-indigo-400">www.mightghanaltd.com</p>
@@ -220,7 +233,7 @@
                 <!-- Project 3: YezDrive Ltd. -->
                 <a href="https://www.yezdrive.com" target="_blank" rel="noopener noreferrer" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-600">
                     <!-- Adjusted placeholder colors for dark theme -->
-                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=YezDrive.com" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <img src="images/logo_yez.png" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
                     <div class="p-6">
                         <h4 class="text-xl font-semibold text-white mb-1">YezDrive Ltd.</h4>
                         <p class="text-sm text-indigo-400">www.yezdrive.com</p>
@@ -231,7 +244,7 @@
                 <!-- Project 4: Data Systems Ghana -->
                 <a href="https://www.datasystemsgh.com" target="_blank" rel="noopener noreferrer" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-700">
                     <!-- Adjusted placeholder colors for dark theme -->
-                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=DataSystemsGH.com" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <img src="images/data logo.png" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
                     <div class="p-6">
                         <h4 class="text-xl font-semibold text-white mb-1">Data Systems Ghana</h4>
                         <p class="text-sm text-indigo-400">www.datasystemsgh.com</p>
@@ -241,6 +254,35 @@
             </div>
             <div class="text-center mt-8 animate-fade-in-up delay-800">
                 <p class="text-gray-400 italic">...and more projects including <a href="https://www.tech2ghana.com" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-semibold">Tech2Ghana</a> and <a href="https://www.oldairportridgeschool.com" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-semibold">Old Airport Ridge School</a>.</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Gallery
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Gallery Image 1 -->
+                <div class="bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-400">
+                    <img src="images/02.png" alt="Gallery Image 1" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105"/>
+                </div>
+                
+                <!-- Gallery Image 2 -->
+                <div class="bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-500">
+                    <img src="images/04.png" alt="Gallery Image 2" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105"/>
+                </div>
+                
+                <!-- Gallery Image 3 -->
+                <div class="bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-600">
+                    <img src="images/05.png" alt="Gallery Image 3" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105"/>
+                </div>
+                
+                <!-- Gallery Image 4 -->
+                <div class="bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-700">
+                    <img src="images/06.png" alt="Gallery Image 4" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105"/>
+                </div>
             </div>
         </section>
 
@@ -311,6 +353,19 @@
                     <span class="text-sm text-gray-400">Base Location</span>
                     <strong class="text-lg font-medium text-white">Tamale, Ghana</strong>
                 </div>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center gap-6 mt-12">
+                <a href="https://www.linkedin.com/in/ahmed-salim-aminu-3aa1268a/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn" class="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full transition duration-300 transform hover:scale-110 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/ahmedacid/" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook" class="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full transition duration-300 transform hover:scale-110 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://x.com/ahmedasids" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)" class="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full transition duration-300 transform hover:scale-110 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 002.856-3.515A9.98 9.98 0 1121.539 19.48a9.88 9.88 0 003.414-5.91zM2.541 5.431c1.525 0 2.762-1.237 2.762-2.762S4.066.907 2.541.907 0 2.144 0 3.669s1.237 2.762 2.541 2.762zm15.571 10.812c-.804.806-2.082.805-2.888 0l-8.88-8.88c-.806-.806-.805-2.082 0-2.888.806-.806 2.082-.805 2.888 0l8.88 8.88c.806.806.805 2.082 0 2.888z"/></svg>
+                </a>
             </div>
         </section>
 
