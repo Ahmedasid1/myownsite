@@ -1,0 +1,15 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tslint.enable": false,
+  "files.exclude": {
+    "node_modules/**": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "webhint.validate": {
+    "typescript-config/is-valid": "off",
+    "typescript-config/strict": "off"
+  }
+}
