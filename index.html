@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Salim Aminu | IT Manager & Web Developer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate-900 for dark background */
+        }
+        /* Custom styles for professional cards and shadow (adjusting shadow for dark mode) */
+        .card-shadow {
+            /* Subtle dark mode shadow for depth */
+            box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.6), 0 4px 6px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* Keyframe for a smooth fade-in and subtle lift */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        /* Apply animation to sections/elements */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        /* Staggered animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-slate-900 bg-opacity-95 shadow-lg backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="#" class="text-xl font-bold text-indigo-400">A.S.A.</a>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#summary" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Summary</a>
+                    <a href="#skills" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Skills</a>
+                    <a href="#experience" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Experience</a>
+                    <a href="#projects" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Projects</a>
+                    <a href="#contact" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="bg-indigo-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 shadow-xl">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Profile Image Placeholder (Advanced) -->
+            <div class="animate-fade-in-up delay-100 mx-auto w-36 h-36 bg-gray-700 rounded-full flex items-center justify-center mb-6 border-4 border-indigo-500 overflow-hidden shadow-2xl">
+                <!-- Placeholder Image URL for a professional look -->
+                <img src="https://placehold.co/144x144/334155/ffffff?text=AS" alt="Ahmed Salim Profile" class="w-full h-full object-cover">
+            </div>
+            
+            <h1 class="animate-fade-in-up delay-200 text-4xl sm:text-6xl font-extrabold mb-3 leading-tight">Ahmed Salim Aminu</h1>
+            <p class="animate-fade-in-up delay-300 text-xl font-light text-indigo-300 mb-8">IT Manager, Digital Literacy Advocate, & Full-Stack Web Developer</p>
+            
+            <div class="animate-fade-in-up delay-400 flex flex-wrap justify-center space-x-4">
+                <a href="#projects" class="bg-indigo-400 text-slate-900 hover:bg-indigo-300 font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">View Projects</a>
+                <a href="mailto:ahmedsalim.aminu@gmail.com" class="bg-transparent border border-indigo-400 hover:bg-indigo-800 text-indigo-400 font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Sections -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 -mt-16 relative z-10">
+
+        <!-- Summary Section -->
+        <section id="summary" class="mb-16 animate-fade-in-up delay-500">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Professional Summary
+            </h2>
+            <div class="bg-slate-800 p-8 rounded-2xl card-shadow">
+                <p class="text-lg leading-relaxed text-gray-300">Highly skilled **IT manager** with a strong background in information technology, dedicated to fostering youth advocacy and IT education by integrating innovative technology solutions that inspire and empower the next generation. Proficient in project management, problem-solving, and decision-making, with a track record of successfully implementing complex IT projects that align with organizational goals and promote digital literacy. Excellent communication and interpersonal skills, with the ability to collaborate across departments and engage stakeholders to ensure IT infrastructure effectively meets diverse needs, including those of young learners and advocates.</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Key Skills & Expertise
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div class="bg-slate-800 p-8 rounded-2xl card-shadow animate-fade-in-up delay-600">
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Technical & Development
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-indigo-700">HTML</span>
+                        <span class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-indigo-700">CSS</span>
+                        <span class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-indigo-700">JavaScript</span>
+                        <span class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-indigo-700">PHP</span>
+                        <span class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-indigo-700">Graphic Design</span>
+                        <span class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-indigo-700">Cloud Management</span>
+                    </div>
+                </div>
+
+                <!-- Professional Skills -->
+                <div class="bg-slate-800 p-8 rounded-2xl card-shadow animate-fade-in-up delay-700">
+                    <h3 class="text-2xl font-semibold mb-4 text-emerald-400 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.8-1.5-2-2-3.5-2C9.4 8 8 8.8 8 10c0 1.5.8 2 2.5 2C12.4 12 14 11.2 14 10z"/><path d="M12 22s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/></svg>
+                        Management & Soft Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-emerald-700">Time Management</span>
+                        <span class="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-emerald-700">Communication</span>
+                        <span class="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-emerald-700">Project Management</span>
+                        <span class="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-emerald-700">Problem-Solving</span>
+                        <span class="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-emerald-700">Decision-Making</span>
+                        <span class="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-300 hover:bg-emerald-700">Team Player</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section (Timeline inspired) -->
+        <section id="experience" class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Work Experience
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Experience Item 1: YezDrive Ltd. -->
+                <div class="bg-slate-800 p-6 rounded-2xl card-shadow border-l-4 border-indigo-500 animate-fade-in-up delay-100">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold text-white">General / Fleet / App Manager</h3>
+                        <span class="text-sm font-medium text-white bg-indigo-600 px-3 py-1 rounded-full">Jun 2021 – Present</span>
+                    </div>
+                    <p class="text-indigo-400 font-medium mb-3">YezDrive Ltd. | Tamale</p>
+                    <ul class="list-disc ml-5 text-gray-300 space-y-1 text-sm">
+                        <li>Directed company affairs, developed growth strategies, and managed vehicle/app issues in collaboration with developers.</li>
+                        <li>Oversaw hiring, training, and performance evaluation to maximize productivity.</li>
+                        <li>Analyzed financial data and generated key reports for strategic decision-making.</li>
+                    </ul>
+                </div>
+
+                <!-- Experience Item 2: Data system Ghana Ltd -->
+                <div class="bg-slate-800 p-6 rounded-2xl card-shadow border-l-4 border-indigo-500 animate-fade-in-up delay-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold text-white">Part-time Teacher / Web Developer</h3>
+                        <span class="text-sm font-medium text-white bg-indigo-600 px-3 py-1 rounded-full">May 2022 – Present</span>
+                    </div>
+                    <p class="text-indigo-400 font-medium mb-3">Data system Ghana Ltd | Tamale</p>
+                </div>
+
+                <!-- Experience Item 3: IT Manager -->
+                <div class="bg-slate-800 p-6 rounded-2xl card-shadow border-l-4 border-indigo-500 animate-fade-in-up delay-300">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold text-white">IT Manager</h3>
+                        <span class="text-sm font-medium text-white bg-indigo-600 px-3 py-1 rounded-full">Sep 2019 – Apr 2021</span>
+                    </div>
+                    <p class="text-indigo-400 font-medium mb-3">Might Ghana Ltd. | Tamale</p>
+                    <ul class="list-disc ml-5 text-gray-300 space-y-1 text-sm">
+                        <li>Managed IT budgets, planned policies, and ensured technical standards and legal compliance.</li>
+                        <li>Assessed business costs, risks, and opportunities related to IT infrastructure.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Gallery style with Image placeholders) -->
+        <section id="projects" class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22.5c0 1.242-1.12 2.25-2.5 2.25S10 23.742 10 22.5s1.12-2.25 2.5-2.25S15 21.258 15 22.5z"/><path d="M12 1.5L2 6.5l10 5 10-5-10-5zM2 17.5l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Featured Websites / Projects
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Martha Inspires Foundation -->
+                <a href="https://www.marthainspires.org" target="_blank" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-400">
+                    <!-- Adjusted placeholder colors for dark theme -->
+                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=MarthaInspires.org" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-white mb-1">Martha Inspires Foundation</h4>
+                        <p class="text-sm text-indigo-400">www.marthainspires.org</p>
+                        <p class="text-sm text-gray-300 mt-3">A website promoting youth advocacy and IT education efforts.</p>
+                    </div>
+                </a>
+                
+                <!-- Project 2: Might Ghana Ltd. -->
+                <a href="https://www.mightghanaltd.com" target="_blank" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-500">
+                    <!-- Adjusted placeholder colors for dark theme -->
+                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=MightGhanaLtd.com" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-white mb-1">Might Ghana Ltd.</h4>
+                        <p class="text-sm text-indigo-400">www.mightghanaltd.com</p>
+                        <p class="text-sm text-gray-300 mt-3">Showcase platform for the IT company where he served as manager.</p>
+                    </div>
+                </a>
+                
+                <!-- Project 3: YezDrive Ltd. -->
+                <a href="https://www.yezdrive.com" target="_blank" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-600">
+                    <!-- Adjusted placeholder colors for dark theme -->
+                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=YezDrive.com" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-white mb-1">YezDrive Ltd.</h4>
+                        <p class="text-sm text-indigo-400">www.yezdrive.com</p>
+                        <p class="text-sm text-gray-300 mt-3">Official web presence for the fleet and app management company.</p>
+                    </div>
+                </a>
+                
+                <!-- Project 4: Data Systems Ghana -->
+                <a href="https://www.datasystemsgh.com" target="_blank" class="block bg-slate-800 rounded-2xl card-shadow overflow-hidden group animate-fade-in-up delay-700">
+                    <!-- Adjusted placeholder colors for dark theme -->
+                    <img src="https://placehold.co/400x200/4f46e5/e0e7ff?text=DataSystemsGH.com" alt="Project Placeholder" class="w-full h-40 object-cover transition duration-300 group-hover:scale-105"/>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-white mb-1">Data Systems Ghana</h4>
+                        <p class="text-sm text-indigo-400">www.datasystemsgh.com</p>
+                        <p class="text-sm text-gray-300 mt-3">Development for the company where he serves as a teacher/developer.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="text-center mt-8 animate-fade-in-up delay-800">
+                <p class="text-gray-400 italic">...and more projects including <a href="https://www.tech2ghana.com" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-semibold">Tech2Ghana</a> and <a href="https://www.oldairportridgeschool.com" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-semibold">Old Airport Ridge School</a>.</p>
+            </div>
+        </section>
+
+        <!-- Education and Certs Section -->
+        <section id="education" class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="18" y1="2" x2="18" y2="4"/></svg>
+                Education & Professional Development
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Education Column -->
+                <div class="bg-slate-800 p-8 rounded-2xl card-shadow animate-fade-in-up delay-900">
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Academic History</h3>
+                    <div class="space-y-4">
+                        <p class="border-l-4 border-indigo-500 pl-4 py-1">
+                            <strong class="block text-lg text-white">BSc Information Technology Management</strong>
+                            <span class="text-gray-400">University of Professional Studies, Accra (08/2021)</span>
+                        </p>
+                        <p class="border-l-4 border-indigo-500 pl-4 py-1">
+                            <strong class="block text-lg text-white">Diploma in Information Technology Management</strong>
+                            <span class="text-gray-400">University of Professional Studies, Accra (06/2018)</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Certifications Column -->
+                <div class="bg-slate-800 p-8 rounded-2xl card-shadow animate-fade-in-up delay-1000">
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Certifications</h3>
+                    <div class="space-y-4">
+                        <p class="border-l-4 border-indigo-500 pl-4 py-1">
+                            <strong class="block text-lg text-white">Web Development Certificate</strong>
+                            <span class="text-gray-400">from freeCodeCamp</span>
+                        </p>
+                        <p class="border-l-4 border-indigo-500 pl-4 py-1">
+                            <strong class="block text-lg text-white">Regulatory Best Practices</strong>
+                            <span class="text-gray-400">from NCA</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-4 border-indigo-400 pb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2 2h-4.32a2 2 0 0 1-1.42-.59l-3.95-3.95a10 10 0 0 1-5.6-5.6L4.08 6.74a2 2 0 0 1-.59-1.42V3a2 2 0 0 1 2-2h3.92a2 2 0 0 1 1.98 1.62l.53 2.12a2 2 0 0 1-.36 1.83L8 9l5 5l2.48-2.48a2 2 0 0 1 1.83-.36l2.12.53A2 2 0 0 1 22 16.92z"/></svg>
+                Get In Touch
+            </h2>
+            <div class="bg-slate-900 p-8 rounded-2xl card-shadow flex flex-col md:flex-row justify-around items-stretch space-y-6 md:space-y-0 md:space-x-8">
+                
+                <!-- Email -->
+                <div class="flex flex-col items-center p-4 bg-slate-800 rounded-xl shadow-inner transition duration-300 hover:bg-slate-700 w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span class="text-sm text-gray-400">Email Address</span>
+                    <strong class="text-lg font-medium text-white">ahmedsalim.aminu@gmail.com</strong>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex flex-col items-center p-4 bg-slate-800 rounded-xl shadow-inner transition duration-300 hover:bg-slate-700 w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2 2h-4.32a2 2 0 0 1-1.42-.59l-3.95-3.95a10 10 0 0 1-5.6-5.6L4.08 6.74a2 2 0 0 1-.59-1.42V3a2 2 0 0 1 2-2h3.92a2 2 0 0 1 1.98 1.62l.53 2.12a2 2 0 0 1-.36 1.83L8 9l5 5l2.48-2.48a2 2 0 0 1 1.83-.36l2.12.53A2 2 0 0 1 22 16.92z"/></svg>
+                    <span class="text-sm text-gray-400">Phone Number</span>
+                    <strong class="text-lg font-medium text-white">0248015092</strong>
+                </div>
+
+                <!-- Location -->
+                <div class="flex flex-col items-center p-4 bg-slate-800 rounded-xl shadow-inner transition duration-300 hover:bg-slate-700 w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/><path d="M12 11c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2z"/><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/></svg>
+                    <span class="text-sm text-gray-400">Base Location</span>
+                    <strong class="text-lg font-medium text-white">Tamale, Ghana</strong>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p class="text-sm">&copy; 2025 Ahmed Salim Aminu. Built with modern dark-mode design principles.</p>
+            <div class="mt-2 text-xs space-x-4">
+                <a href="#summary" class="hover:text-indigo-400 transition duration-200">Summary</a>
+                <a href="#experience" class="hover:text-indigo-400 transition duration-200">Experience</a>
+                <a href="#projects" class="hover:text-indigo-400 transition duration-200">Projects</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
