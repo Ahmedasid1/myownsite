@@ -75,6 +75,7 @@
                     <a href="#projects" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Projects</a>
                     <a href="#gallery" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Gallery</a>
                     <a href="#contact" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a>
+                    <a href="https://aasalim.com/blog" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Blog</a>
                     
                 </div>
             </div>
@@ -367,9 +368,76 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 002.856-3.515A9.98 9.98 0 1121.539 19.48a9.88 9.88 0 003.414-5.91zM2.541 5.431c1.525 0 2.762-1.237 2.762-2.762S4.066.907 2.541.907 0 2.144 0 3.669s1.237 2.762 2.541 2.762zm15.571 10.812c-.804.806-2.082.805-2.888 0l-8.88-8.88c-.806-.806-.805-2.082 0-2.888.806-.806 2.082-.805 2.888 0l8.88 8.88c.806.806.805 2.082 0 2.888z"/></svg>
                 </a>
             </div>
+
+            <!-- Visit Blog CTA -->
+            <div class="text-center mt-8">
+                <a href="https://aasalim.com/blog" target="_blank" rel="noopener noreferrer" class="inline-block bg-indigo-400 text-slate-900 hover:bg-indigo-300 font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300">Visit Blog</a>
+            </div>
+
+            <!-- Latest Posts (fetched from WordPress) -->
+            <section id="latest-posts" class="mt-12">
+                <h3 class="text-2xl font-bold text-white mb-4">Latest from the Blog</h3>
+                <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Posts will be injected here -->
+                </div>
+                <div id="posts-error" class="text-gray-400 mt-4 hidden">Unable to load posts right now.</div>
+            </section>
         </section>
 
     </main>
+
+    <script>
+        // Fetch latest posts from WordPress REST API and render them
+        (function(){
+            const apiBase = 'https://aasalim.com/blog/wp-json/wp/v2';
+            const container = document.getElementById('posts-container');
+            const errorEl = document.getElementById('posts-error');
+
+            if(!container) return;
+
+            fetch(`${apiBase}/posts?per_page=3&_embed`)
+                .then(r => {
+                    if(!r.ok) throw new Error('Network response not ok');
+                    return r.json();
+                })
+                .then(posts => {
+                    if(!Array.isArray(posts) || posts.length === 0) {
+                        errorEl.textContent = 'No posts found.'; errorEl.classList.remove('hidden'); return;
+                    }
+                    posts.forEach(post => {
+                        const title = post.title && post.title.rendered ? post.title.rendered : 'Untitled';
+                        const excerptHtml = post.excerpt && post.excerpt.rendered ? post.excerpt.rendered : '';
+                        const temp = document.createElement('div'); temp.innerHTML = excerptHtml;
+                        const excerptText = temp.textContent || temp.innerText || '';
+                        const date = post.date ? new Date(post.date).toLocaleDateString() : '';
+                        const link = post.link || '#';
+                        let img = '';
+                        try{
+                            if(post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]){
+                                img = post._embedded['wp:featuredmedia'][0].source_url || '';
+                            }
+                        }catch(e){ img = ''; }
+
+                        const card = document.createElement('a');
+                        card.href = link; card.target = '_blank'; card.rel = 'noopener noreferrer';
+                        card.className = 'block bg-slate-800 rounded-2xl overflow-hidden card-shadow group';
+                        card.innerHTML = `
+                            ${img ? `<img src="${img}" alt="${title}" class="w-full h-40 object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-40 bg-slate-700 flex items-center justify-center text-gray-400">No image</div>`}
+                            <div class="p-4">
+                                <h4 class="text-lg font-semibold text-white mb-1">${title}</h4>
+                                <p class="text-sm text-gray-300">${excerptText.slice(0,140)}${excerptText.length>140?'...':''}</p>
+                                <p class="text-xs text-gray-400 mt-3">${date}</p>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch(err => {
+                    console.error('Failed to fetch posts', err);
+                    if(errorEl){ errorEl.textContent = 'Unable to load posts right now.'; errorEl.classList.remove('hidden'); }
+                });
+        })();
+    </script>
 
     <!-- Footer -->
     <footer class="bg-gray-950 text-white py-8">
