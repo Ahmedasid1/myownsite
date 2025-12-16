@@ -387,36 +387,40 @@
     </main>
 
     <script>
-        // Fetch latest posts from WordPress REST API and render them
+        // Fetch latest posts from Blogger JSON feed and render them
         (function(){
-            const apiBase = 'https://ahmedasid.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=3&callback=?';
+            const feedUrl = 'https://ahmedasid.blogspot.com/feeds/posts/default?alt=json&max-results=3';
             const container = document.getElementById('posts-container');
             const errorEl = document.getElementById('posts-error');
 
             if(!container) return;
 
-            fetch(`${apiBase}/posts?per_page=3&_embed`)
+            fetch(feedUrl)
                 .then(r => {
                     if(!r.ok) throw new Error('Network response not ok');
                     return r.json();
                 })
-                .then(posts => {
-                    if(!Array.isArray(posts) || posts.length === 0) {
+                .then(data => {
+                    const entries = data.feed && data.feed.entry ? data.feed.entry : [];
+                    if(!Array.isArray(entries) || entries.length === 0) {
                         errorEl.textContent = 'No posts found.'; errorEl.classList.remove('hidden'); return;
                     }
-                    posts.forEach(post => {
-                        const title = post.title && post.title.rendered ? post.title.rendered : 'Untitled';
-                        const excerptHtml = post.excerpt && post.excerpt.rendered ? post.excerpt.rendered : '';
-                        const temp = document.createElement('div'); temp.innerHTML = excerptHtml;
-                        const excerptText = temp.textContent || temp.innerText || '';
-                        const date = post.date ? new Date(post.date).toLocaleDateString() : '';
-                        const link = post.link || '#';
+                    entries.forEach(entry => {
+                        const title = entry.title && entry.title.$t ? entry.title.$t : 'Untitled';
+                        const contentHtml = entry.content && entry.content.$t ? entry.content.$t : '';
+                        const temp = document.createElement('div'); temp.innerHTML = contentHtml;
+                        let excerptText = temp.textContent || temp.innerText || '';
+                        excerptText = excerptText.replace(/\s+/g, ' ').slice(0, 140);
+                        const date = entry.published && entry.published.$t ? new Date(entry.published.$t).toLocaleDateString() : '';
+                        let link = '#';
+                        if(entry.link && Array.isArray(entry.link)){
+                            const altLink = entry.link.find(l => l.rel === 'alternate');
+                            if(altLink && altLink.href) link = altLink.href;
+                        }
                         let img = '';
-                        try{
-                            if(post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]){
-                                img = post._embedded['wp:featuredmedia'][0].source_url || '';
-                            }
-                        }catch(e){ img = ''; }
+                        if(entry.media$thumbnail && entry.media$thumbnail.url) {
+                            img = entry.media$thumbnail.url;
+                        }
 
                         const card = document.createElement('a');
                         card.href = link; card.target = '_blank'; card.rel = 'noopener noreferrer';
@@ -425,7 +429,7 @@
                             ${img ? `<img src="${img}" alt="${title}" class="w-full h-40 object-cover group-hover:scale-105 transition duration-300">` : `<div class="w-full h-40 bg-slate-700 flex items-center justify-center text-gray-400">No image</div>`}
                             <div class="p-4">
                                 <h4 class="text-lg font-semibold text-white mb-1">${title}</h4>
-                                <p class="text-sm text-gray-300">${excerptText.slice(0,140)}${excerptText.length>140?'...':''}</p>
+                                <p class="text-sm text-gray-300">${excerptText}${excerptText.length>=140?'...':''}</p>
                                 <p class="text-xs text-gray-400 mt-3">${date}</p>
                             </div>
                         `;
