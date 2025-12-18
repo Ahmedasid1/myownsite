@@ -387,78 +387,90 @@
     </main>
 
     <script>
-        // Fetch latest posts from Blogger JSON feed and render them
+        // Fetch latest posts from Blogger; try fetch first, then JSONP fallback if CORS blocks
         (function(){
-            const feedUrl = 'https://ahmedasid.blogspot.com/feeds/posts/default?alt=json&max-results=3';
+            const feedBase = 'https://ahmedasid.blogspot.com/feeds/posts/default';
+            const feedUrl = feedBase + '?alt=json&max-results=3';
+            const jsonpUrl = feedBase + '?alt=json-in-script&max-results=3';
             const container = document.getElementById('posts-container');
             const errorEl = document.getElementById('posts-error');
 
             if(!container) return;
 
+            function renderEntries(entries){
+                if(!Array.isArray(entries) || entries.length === 0){
+                    if(errorEl){ errorEl.textContent = 'No posts found.'; errorEl.classList.remove('hidden'); }
+                    return;
+                }
+                container.innerHTML = '';
+                entries.slice(0,3).forEach(entry => {
+                    try{
+                        const title = (entry.title && entry.title.$t) ? entry.title.$t : 'Untitled';
+                        const contentHtml = (entry.content && entry.content.$t) ? entry.content.$t : '';
+                        const div = document.createElement('div'); div.innerHTML = contentHtml;
+                        let excerpt = (div.textContent || div.innerText || '').trim().replace(/\s+/g,' ');
+                        excerpt = excerpt.slice(0,150) + (excerpt.length > 150 ? '...' : '');
+                        const dateStr = entry.published && entry.published.$t ? entry.published.$t : '';
+                        const date = dateStr ? new Date(dateStr).toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'}) : '';
+                        let url = '#';
+                        if(entry.link && Array.isArray(entry.link)){
+                            const alt = entry.link.find(l => l.rel === 'alternate');
+                            if(alt && alt.href) url = alt.href;
+                        }
+
+                        const card = document.createElement('a');
+                        card.href = url; card.target = '_blank'; card.rel = 'noopener noreferrer';
+                        card.className = 'block bg-slate-800 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300';
+                        card.innerHTML = `
+                            <div class="bg-gradient-to-br from-indigo-600 to-purple-700 h-32 flex items-center justify-center">
+                                <div class="text-center px-4">
+                                    <div class="text-2xl font-bold text-white">${title.charAt(0).toUpperCase()}</div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="text-lg font-semibold text-white mb-2">${title}</h4>
+                                <p class="text-sm text-gray-300">${excerpt}</p>
+                                <p class="text-xs text-gray-400 mt-3">${date}</p>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    }catch(e){ console.error('Render entry error', e); }
+                });
+                if(errorEl) errorEl.classList.add('hidden');
+            }
+
+            // Try standard fetch first
             fetch(feedUrl, { mode: 'cors' })
                 .then(r => {
                     if(!r.ok) throw new Error('Network response: ' + r.status);
                     return r.json();
                 })
                 .then(data => {
-                    console.log('Blogger feed data:', data);
-                    const entries = (data.feed && data.feed.entry) ? data.feed.entry : [];
-                    if(!Array.isArray(entries) || entries.length === 0) {
-                        throw new Error('No posts in feed');
+                    if(data && data.feed && data.feed.entry){
+                        renderEntries(data.feed.entry);
+                    } else {
+                        throw new Error('Feed has no entries');
                     }
-
-                    container.innerHTML = '';
-                    entries.slice(0, 3).forEach(entry => {
-                        try {
-                            const title = (entry.title && entry.title.$t) ? entry.title.$t : 'Untitled';
-                            const contentHtml = (entry.content && entry.content.$t) ? entry.content.$t : '';
-                            
-                            // Strip HTML tags
-                            const div = document.createElement('div');
-                            div.innerHTML = contentHtml;
-                            let excerpt = (div.textContent || div.innerText || '').trim().replace(/\s+/g, ' ');
-                            excerpt = excerpt.slice(0, 150) + (excerpt.length > 150 ? '...' : '');
-                            
-                            const dateStr = entry.published && entry.published.$t ? entry.published.$t : '';
-                            const date = dateStr ? new Date(dateStr).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) : '';
-                            
-                            let url = '#';
-                            if(entry.link && Array.isArray(entry.link)) {
-                                const altLink = entry.link.find(l => l.rel === 'alternate');
-                                if(altLink && altLink.href) url = altLink.href;
-                            }
-
-                            // Build card HTML
-                            const card = document.createElement('a');
-                            card.href = url;
-                            card.target = '_blank';
-                            card.rel = 'noopener noreferrer';
-                            card.className = 'block bg-slate-800 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300';
-                            card.innerHTML = `
-                                <div class="bg-gradient-to-br from-indigo-600 to-purple-700 h-32 flex items-center justify-center">
-                                    <div class="text-center px-4">
-                                        <div class="text-2xl font-bold text-white">${title.charAt(0).toUpperCase()}</div>
-                                    </div>
-                                </div>
-                                <div class="p-4">
-                                    <h4 class="text-lg font-semibold text-white mb-2 line-clamp-2">${title}</h4>
-                                    <p class="text-sm text-gray-300 line-clamp-2">${excerpt}</p>
-                                    <p class="text-xs text-gray-400 mt-3">${date}</p>
-                                </div>
-                            `;
-                            container.appendChild(card);
-                        } catch(e) {
-                            console.error('Error rendering entry:', e);
-                        }
-                    });
-                    if(errorEl) errorEl.classList.add('hidden');
                 })
                 .catch(err => {
-                    console.error('Blogger fetch error:', err);
-                    if(errorEl){
-                        errorEl.textContent = 'Unable to load latest posts. Check back soon!';
-                        errorEl.classList.remove('hidden');
-                    }
+                    console.warn('Fetch failed, attempting JSONP fallback:', err);
+                    // JSONP fallback using script tag
+                    const cbName = 'blogger_jsonp_cb_' + Math.random().toString(36).substr(2,9);
+                    window[cbName] = function(json){
+                        try{
+                            if(json && json.feed && json.feed.entry) renderEntries(json.feed.entry);
+                            else if(errorEl){ errorEl.textContent = 'No posts available.'; errorEl.classList.remove('hidden'); }
+                        }catch(e){ console.error('JSONP render error', e); }
+                        // cleanup
+                        setTimeout(() => { try{ delete window[cbName]; }catch(e){}; script.remove(); }, 5000);
+                    };
+                    const script = document.createElement('script');
+                    script.src = jsonpUrl + '&callback=' + cbName;
+                    script.onerror = function(ev){
+                        console.error('JSONP script error', ev);
+                        if(errorEl){ errorEl.textContent = 'Unable to load latest posts.'; errorEl.classList.remove('hidden'); }
+                    };
+                    document.body.appendChild(script);
                 });
         })();
     </script>
